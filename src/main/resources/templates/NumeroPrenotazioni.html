@@ -8,28 +8,41 @@
     <script>
          function AddNumber(){
       var pv = document.getElementById('numero').innerHTML
-      document.getElementById('numero').innerHTML =+pv+1 ;}
+
+      document.getElementById('numero').innerHTML =+pv+1
+
+      document.getElementById('something').value=document.getElementById('numero').innerHTML
+      ;}
+
 
       function SubNumber(){
       var pv = document.getElementById('numero').innerHTML
       if(+pv>1){
-      document.getElementById('numero').innerHTML =+pv-1 ;}}
+      document.getElementById('numero').innerHTML =+pv-1
+      document.getElementById('something').value=document.getElementById('numero').innerHTML
+      ;}}
     </script>
 </head>
 <body>
 <!-- onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"-->
 
 <div class="slider" id="slidarx" style="position:relative; left:600px; top:180px; ">
+
     <div style="position:relative; left:10px;">
+
     <p id="decsr" style="position:relative; top:-30px;left:-400px;font-size:70px; ">Numero partecipanti</p>
-    <p id="numero" style="position:absolute; left:18%; top:-140px; text-align:center;font-size:200px;">1</p>
+    <p id="numero"   style="position:absolute; left:18%; top:-140px; text-align:center;font-size:200px;">1</p>
+
     </div>
 <button class="btn btn-primary" onclick="AddNumber()" style="height:160px;
 width:180px; position:relative; top:18px;left:50px ;text-align:center;font-size:80px;" type="button ">+</button>
 <button class="btn btn-primary" onclick="SubNumber()" style="height:160px;
 width:180px; position:relative; top:18px;left:50px;text-align: center; font-size: 80px;" type="button">-</button>
-    <a class="btn btn-primary" style="height:70px;
-width:480px; position:relative; top:190px;left:-370px;text-align: center; font-size: 30px;" href="@ListaPostiSeleziona.html">Avanti</a>
+    <form action="#" th:action="@{/NumeroPrenotazioni}" method="get">
+        <input type="hidden" value="1" name="numero_selezionato" id="something" />
+    <button class="btn btn-primary" type="submit" style="height:70px;
+width:480px; position:relative; top:190px;left:-370px;text-align: center; font-size: 30px;">Avanti</button>
+    </form>
     </div>
 </div>
 </body>

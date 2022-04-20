@@ -16,11 +16,14 @@ public class AddettoPrenotazione {
         return "InizioMenu";
     }
 
-    @GetMapping("/ListaPostiSeleziona.html")
-    public String SelectPosti(Model model){
-        model.addAttribute("stats",postoDatiMg1.getPostCap(1));
+    @RequestMapping(value = "/NumeroPrenotazioni",method = RequestMethod.GET)
+    public String Selectpss(Model model,@RequestParam(value = "numero_selezionato") String numero_selezionato){
+        model.addAttribute("stats",postoDatiMg1.getPostCap(Integer.parseInt(numero_selezionato)));
         return "ListaPostiSeleziona";
     }
+
+
+
 
     @GetMapping("DettagliPosto.html")
     public String ListaPosti(Model model){
@@ -34,6 +37,7 @@ public class AddettoPrenotazione {
     }
 
     //NumeroPrenotazioni.html
+
     @GetMapping("NumeroPrenotazioni.html")
     public String selectNumbers(Model model){
         model.addAttribute("numero",3);
