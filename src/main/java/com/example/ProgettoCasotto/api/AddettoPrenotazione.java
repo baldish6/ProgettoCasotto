@@ -1,8 +1,10 @@
 package com.example.ProgettoCasotto.api;
 
 import com.example.ProgettoCasotto.models.Posto;
+import com.example.ProgettoCasotto.models.Prova;
 import com.example.ProgettoCasotto.services.Attrezatura;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,10 +28,10 @@ public class AddettoPrenotazione {
 
     @RequestMapping(value = "/id_posto",method = RequestMethod.GET)
     public String StartForm(Model model,@RequestParam(value = "qr_id") String qr_id){
-        model.addAttribute("id_forma",qr_id);
-        Posto p = postoDatiMg1.getPostobyID(qr_id);
-        model.addAttribute("postxx",p);
+        //Posto p = postoDatiMg1.getPostobyID(qr_id);
+        model.addAttribute("postxx", new Prova());
         model.addAttribute("getAttr", Attrezatura.values());
+        model.addAttribute("indx","indice");
         return "PrenotaMenu";
     }
 
@@ -48,10 +50,17 @@ public class AddettoPrenotazione {
     }
 
     @RequestMapping(value = "/going_home_tt",method = RequestMethod.POST)
-    public String saveStudentlll(@ModelAttribute("postxx") Posto std) {
-        postoDatiMg1.postoOccupa(std);
+    public String saveStudentlll( @ModelAttribute("postxx") Prova ps) {
+        System.out.println(ps.toString());
+        //postoDatiMg1.postoOccupa(ps);
         return "DettagliPosto";
     }
+
+    //    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    //    public String saveStudent(@ModelAttribute("student") Student std) {
+    //        service.save(std);
+    //        return "redirect:/";
+    //    }
 
     @GetMapping("InizioMenu.html")
     public String goHome(){

@@ -28,24 +28,49 @@
 top: 200px; width:1000px; padding-left: 40%;">--->
 <div class="box input" style="position: relative;
      top: 80px; width:1000px; padding-left: 30%; font-size:24pt;">
-  <p th:text="'Posto N: '+${id_forma}"> id</p>
-  <form  action="#" class="ui_formz" th:action="@{/going_home_tt}" th:object="${postxx}"  method="get">
-    <p th:text="'Capineza: '+${postxx.capienza}"> capineza</p>
-    <input type="hidden" th:value="${id_forma}" th:field="*{qr}">
+  <p> id</p>
+  <form  action="#" class="ui_formz" th:action="@{/going_home_tt}" th:object="${postxx}"  method="post">
+
 <div class="input-group input-group-lg">
   <span class="input-group-text" id="inputGroup-sizing-lg">Name</span>
+
   <!---  onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" -->
-  <input type="string"  th:field="*{persona}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+  <input type="string" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
 </div>
 
 
+    <input th:field="*{id}">
+    <input th:field="*{nome}">
+    <input th:field="*{random}">
+    <div>
+    <input type="checkbox" value="MEZZA_GIORNATA" th:field="*{tempo_prenotazione}" >
+      <label>MEZZA_GIORNATA</label>
+    </div>
+    <input th:field="*{giorni_prenotazione}">
+    <div>
+      <div>
+
+    <input type="checkbox" value="OMBRELLONE" th:field="*{attrezature}" >
+        <label>OMBRELLONE</label>
+        </div>
+      <div>
+    <input type="checkbox" value="SDRAIO" th:field="*{attrezature}" >
+        <label>SDRAIO</label>
+      </div>
+      <div>
+    <input type="checkbox" value="LETTINO" th:field="*{attrezature}" >
+        <label>LETTINO</label>
+      </div>
+    </div>
 
   <div class=" giornata select" style="position: relative; top: 30px; ">
 
     <ul>
       <li style="list-style-type: none;  position:relative; left:-32px;"  th:each="attr :${getAttr}">
+        <label class="form-check-label">
+          </label>
       <div class="form-check" >
-        <input class="form-check-input" th:field="*{attrezature}" th:value="${attr}" type="checkbox"  unchecked >
+        <input class="form-check-input"    th:value="${attr}" type="checkbox"  unchecked >
         <label th:text="${attr}" class="form-check-label">
           Ombrellone
         </label>
@@ -78,19 +103,19 @@ top: 200px; width:1000px; padding-left: 40%;">--->
 
 
 <div class="form-check">
-  <input class="form-check-input" th:value="MEZZA_GIORNATA" th:field="*{tempo_prenotazione}" type="radio" checked  name="flexRadioDefault" onclick="HideSlider()" id="flexRadioDefault1">
+  <input class="form-check-input"   type="radio" checked  name="flexRadioDefault" onclick="HideSlider()" id="flexRadioDefault1">
   <label class="form-check-label" for="flexRadioDefault1">
     Mezza giornata
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" th:value="GIORNATA_INTERA"  th:field="*{tempo_prenotazione}" type="radio" name="flexRadioDefault" onclick="HideSlider()" id="flexRadioDefault2" checked>
+  <input class="form-check-input"    type="radio" name="flexRadioDefault" onclick="HideSlider()" id="flexRadioDefault2" checked>
   <label class="form-check-label" for="flexRadioDefault2">
     Intera giornata
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" th:value="GIORNI_CONSECUTIVI" th:field="*{tempo_prenotazione}"  type="radio" name="flexRadioDefault" onclick="ShowSlider()" id="flexRadioDefault3">
+  <input class="form-check-input"  type="radio" name="flexRadioDefault" onclick="ShowSlider()" id="flexRadioDefault3">
   <label class="form-check-label" for="flexRadioDefault3">
     Multipli giorni
   </label>
@@ -100,7 +125,7 @@ top: 200px; width:1000px; padding-left: 40%;">--->
   <div class="box input">
     <div class="input-group input-group-lg"  id="giorni" style="position:relative ;left:-50px; visibility:hidden" >
       <span class="input-group-text" style="position:relative;top:20px;font-size:20px;" id="inputGroup-sizing-lg4">N° Giorni</span>
-      <input  th:field="*{giorni_prenotazione}"  type="number" id="num_giorni" style="text-align: center; width:80px; top:20px; font-size: 60px;" onkeydown=" return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"
+      <input   type="number" id="num_giorni" style="text-align: center; width:80px; top:20px; font-size: 60px;" onkeydown=" return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"
              class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value="0">
     </div>
   </div>

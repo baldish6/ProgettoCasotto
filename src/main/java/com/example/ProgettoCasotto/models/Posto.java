@@ -6,6 +6,7 @@ import com.example.ProgettoCasotto.services.Orario;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Posto {
     private final String qr;
     private final Integer capienza;
@@ -18,6 +19,12 @@ public class Posto {
     public Posto(String qr, Integer capienza,
      String persona, List<Attrezatura> attrezature,Orario tempo_prenotazione,Integer giorni_prenotazione){
         this.qr=qr; this.capienza=capienza; this.persona=persona;
+        this.attrezature=attrezature;this.tempo_prenotazione=tempo_prenotazione;
+        this.giorni_prenotazione=giorni_prenotazione;
+    }
+
+    public Posto(String persona, List<Attrezatura> attrezature,Orario tempo_prenotazione,Integer giorni_prenotazione){
+        this.qr="aaaaa"; this.capienza=1; this.persona=persona;
         this.attrezature=attrezature;this.tempo_prenotazione=tempo_prenotazione;
         this.giorni_prenotazione=giorni_prenotazione;
     }

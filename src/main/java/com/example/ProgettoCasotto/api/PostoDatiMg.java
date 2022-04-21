@@ -1,6 +1,7 @@
 package com.example.ProgettoCasotto.api;
 
 import com.example.ProgettoCasotto.models.Posto;
+import com.example.ProgettoCasotto.models.Prova;
 import com.example.ProgettoCasotto.services.Attrezatura;
 import com.example.ProgettoCasotto.services.Orario;
 import org.apache.commons.csv.CSVFormat;
@@ -23,6 +24,7 @@ public class PostoDatiMg {
     //public PostoDatiMg(){}
 
     private List<Posto> temp_posti = new ArrayList<>();
+    private List<Prova> pva=new ArrayList<>();
     private Integer j=5;
 
     @PostConstruct
