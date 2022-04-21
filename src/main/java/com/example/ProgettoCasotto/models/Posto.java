@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Posto {
-    private String qr;
-    private Integer capienza;
+    private final String qr;
+    private final Integer capienza;
     private String persona;
     private List<Attrezatura> attrezature=new ArrayList<>();
     private Orario tempo_prenotazione;
@@ -56,7 +56,7 @@ public class Posto {
         return giorni_prenotazione;
     }
 
-    public void OccupaPosto(String persona,List<Attrezatura> attrezature,Orario tempo_prenotazione,
+    public void occupaPosto(String persona,List<Attrezatura> attrezature,Orario tempo_prenotazione,
                             Integer giorni_prenotazione){
         this.persona=persona;
         this.attrezature=attrezature;

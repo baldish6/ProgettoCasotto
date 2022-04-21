@@ -27,7 +27,8 @@ public class AddettoPrenotazione {
     @RequestMapping(value = "/id_posto",method = RequestMethod.GET)
     public String StartForm(Model model,@RequestParam(value = "qr_id") String qr_id){
         model.addAttribute("id_forma",qr_id);
-        model.addAttribute("post",postoDatiMg1.getPostobyID(qr_id));
+        Posto p = postoDatiMg1.getPostobyID(qr_id);
+        model.addAttribute("postxx",p);
         model.addAttribute("getAttr", Attrezatura.values());
         return "PrenotaMenu";
     }
@@ -37,6 +38,18 @@ public class AddettoPrenotazione {
     @GetMapping("DettagliPosto.html")
     public String ListaPosti(Model model){
         model.addAttribute("stats",postoDatiMg1.getPosti());
+        return "DettagliPosto";
+    }
+
+    @GetMapping("going_home")
+    public String VaiLitaPosti(Model model){
+        model.addAttribute("stats",postoDatiMg1.getPosti());
+        return "DettagliPosto";
+    }
+
+    @RequestMapping(value = "/going_home_tt",method = RequestMethod.POST)
+    public String saveStudentlll(@ModelAttribute("postxx") Posto std) {
+        postoDatiMg1.postoOccupa(std);
         return "DettagliPosto";
     }
 

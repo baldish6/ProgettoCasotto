@@ -88,6 +88,7 @@ public class PostoDatiMg {
 
     public List<Posto> getPostCap(int i){
         return temp_posti.stream()
+                .filter(x-> x.getPersona() == null)
                 .filter(x->x.getCapienza()>i)
                 .collect(Collectors.toList());
     }
@@ -95,4 +96,9 @@ public class PostoDatiMg {
     public Posto getPostobyID(String id){
         return temp_posti.stream().filter(x->x.getQr().equals(id)).findFirst().orElse(null);
     }
+
+    public void postoOccupa(Posto p){
+        temp_posti.add(p);
+    }
+
 }
