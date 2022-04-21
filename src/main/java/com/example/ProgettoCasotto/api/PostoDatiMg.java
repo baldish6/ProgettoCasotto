@@ -91,4 +91,8 @@ public class PostoDatiMg {
                 .filter(x->x.getCapienza()>i)
                 .collect(Collectors.toList());
     }
+
+    public Posto getPostobyID(String id){
+        return temp_posti.stream().filter(x->x.getQr().equals(id)).findFirst().orElse(null);
+    }
 }

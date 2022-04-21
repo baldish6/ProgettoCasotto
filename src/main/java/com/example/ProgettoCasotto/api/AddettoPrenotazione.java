@@ -1,5 +1,7 @@
 package com.example.ProgettoCasotto.api;
 
+import com.example.ProgettoCasotto.models.Posto;
+import com.example.ProgettoCasotto.services.Attrezatura;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +27,8 @@ public class AddettoPrenotazione {
     @RequestMapping(value = "/id_posto",method = RequestMethod.GET)
     public String StartForm(Model model,@RequestParam(value = "qr_id") String qr_id){
         model.addAttribute("id_forma",qr_id);
+        model.addAttribute("post",postoDatiMg1.getPostobyID(qr_id));
+        model.addAttribute("getAttr", Attrezatura.values());
         return "PrenotaMenu";
     }
 
