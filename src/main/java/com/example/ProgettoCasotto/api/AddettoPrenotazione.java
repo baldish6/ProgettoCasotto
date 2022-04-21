@@ -22,6 +22,11 @@ public class AddettoPrenotazione {
         return "ListaPostiSeleziona";
     }
 
+    @RequestMapping(value = "/id_posto",method = RequestMethod.GET)
+    public String StartForm(Model model,@RequestParam(value = "qr_id") String qr_id){
+        model.addAttribute("id_forma",qr_id);
+        return "PrenotaMenu";
+    }
 
 
 

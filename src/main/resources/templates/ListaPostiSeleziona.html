@@ -14,27 +14,30 @@
 <div style="font-size:48px; ">
     <div class=" giornata select" style="position: relative; top: 30px;">
         <h1 style="position:relative; left:100px;">Lista Posti</h1>
-
+        <form action="#" th:action="@{/id_posto}" method="get">
         <div class="list info container" style="background:white">
             <table class="table">
                 <tr>
                     <th style="position:relative; left:470px;">qr</th>
                     <th style="position:relative; left:390px;">capienza</th>
                 </tr>
+
                 <tr th:each="stat : ${stats}">
                     <td>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                            <input class="form-check-input" name="qr_id" type="radio"  th:value="${stat.qr}"  id="flexRadioDefault1"
                             style="position:relative;left:350px;">
                         </div>
                     </td>
                     <td class="qr px-md-4"  style="position:relative; right:-160px;" th:text="${stat.qr}" >uno</td>
                     <td class="cap px-md-1" style="position:relative; right:250px;" th:text="${stat.capienza}">due</td>
                 </tr>
+
             </table>
         </div>
-        <a class="btn btn-primary" style="height:70px;
-width:480px; position:relative; top:90px;right:-900px;text-align: center; font-size: 30px;" href="PrenotaMenu.html">Avanti</a>
+        <button class="btn btn-primary"  type="submit" style="height:70px;
+width:480px; position:relative; top:90px;right:-900px;text-align: center; font-size: 30px;">Avanti</button>
+        </form>
     </div>
 
 </div>
