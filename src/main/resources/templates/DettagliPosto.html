@@ -27,14 +27,16 @@
             <th>qr</th>
             <th>capienza</th>
             <th>persona</th>
+            <th>attrezature</th>
             <th>tempo prenotazione</th>
             <th>giorni prenotazione</th>
         </tr>
-        <tr th:each="stat : ${stats}">
+        <tr th:each="stat : ${posti}">
 
             <td th:text="${stat.qr}"></td>
             <td th:text="${stat.capienza}"></td>
             <td th:text="${stat.persona}"></td>
+            <td th:text="${stat.attrezature}"></td>
             <td th:text="${stat.tempo_prenotazione}"></td>
             <td th:text="${stat.giorni_prenotazione}"></td>
         </tr>

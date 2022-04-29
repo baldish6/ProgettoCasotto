@@ -19,83 +19,58 @@ public class AddettoPrenotazione {
         return "InizioMenu";
     }
 
-    @RequestMapping(value = "/NumeroPrenotazioni",method = RequestMethod.GET)
-    public String Selectpss(Model model,@RequestParam(value = "numero_selezionato") String numero_selezionato){
-        model.addAttribute("stats",postoDatiMg1.getPostCap(Integer.parseInt(numero_selezionato)));
+    @RequestMapping(value = "/posti_disponibili",method = RequestMethod.GET)
+    public String SelectPosto(Model model,@RequestParam(value = "numero_selezionato") String numero_selezionato){
+        model.addAttribute("posti",postoDatiMg1.getPostCap(Integer.parseInt(numero_selezionato)));
         return "ListaPostiSeleziona";
     }
 
     @RequestMapping(value = "/id_posto",method = RequestMethod.GET)
     public String StartForm(Model model,@RequestParam(value = "qr_id") String qr_id){
         Posto std = postoDatiMg1.getPostobyID(qr_id);
-        model.addAttribute("postxx",std);
+        model.addAttribute("posto",std);
         model.addAttribute("getAttr", Attrezatura.values());
         return "PrenotaMenu";
     }
-/*
-    @RequestMapping(value = "/id_posto",method = RequestMethod.GET)
-    public ModelAndView  GoFormStart(@RequestParam(value = "qr_id") String qr_id){
-        ModelAndView mav = new ModelAndView("id_postox");
-        Posto std = postoDatiMg1.getPostobyID(qr_id);
-        mav.addObject("postxx", std);
-        return mav;
-    }*/
 
 
-
-    @GetMapping("/DettagliPosto.html")
+    @GetMapping("/vedi_lista")
     public String ListaPosti(Model model){
-        model.addAttribute("stats",postoDatiMg1.getPosti());
-        model.addAttribute("next_path","InizioMenu.html");//btn_txt
+        model.addAttribute("posti",postoDatiMg1.getPosti());
+        model.addAttribute("next_path","/");//btn_txt
         model.addAttribute("btn_txt","Indietro");
         return "DettagliPosto";
     }
-/*
-    @GetMapping("going_home")
-    public String VaiLitaPosti(Model model){
-        model.addAttribute("stats",postoDatiMg1.getPosti());
-        return "DettagliPosto";
-    }*/
 
     // POST METHOD
-    @RequestMapping(value = "/going_home_tt",method = RequestMethod.POST)
-    public ModelAndView saveStudentlll( @ModelAttribute("postxx") Posto ps) {
+    @RequestMapping(value = "/show_new_list",method = RequestMethod.POST)
+    public String Partecipa(Model model, @ModelAttribute("posto") Posto ps) {
         System.out.println(ps.toString());
         postoDatiMg1.update_posto(ps);
 
-        ModelAndView mav = new ModelAndView("DettagliPosto.html");
-        mav.addObject("stats",postoDatiMg1.getPosti());
-        mav.addObject("next_path","HomeMenuuu.html");//btn_txt
-        mav.addObject("btn_txt","fine prenotazione");
-        return mav;
+        model.addAttribute("posti",postoDatiMg1.getPosti());
+        model.addAttribute("next_path","home");
+        model.addAttribute("btn_txt","fine prenotazione");
+        return "DettagliPosto";
     }
 
-    @GetMapping("HomeMenuuu.html")
-    public String goHomm(){
+    @GetMapping("/home")
+    public String goHome(){
         return "HomeMenu";
     }
 
-    //    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    //    public String saveStudent(@ModelAttribute("student") Student std) {
-    //        service.save(std);
-    //        return "redirect:/";
-    //    }
-
-    @GetMapping("InizioMenu.html")
-    public String goHome(){
+    @GetMapping("/start")
+    public String Start(){
         return "InizioMenu";
     }
 
-    //NumeroPrenotazioni.html
-
-    @GetMapping("NumeroPrenotazioni.html")
+    @GetMapping("/numero_partecipanti")
     public String selectNumbers(Model model){
         model.addAttribute("numero",3);
         return "NumeroPrenotazioni";
     }
 
-    //PrenotaMenu.html
-    @GetMapping("PrenotaMenu.html")
+    @GetMapping("/prenota")
     public String inputPosto(){
         return "PrenotaMenu";
     }

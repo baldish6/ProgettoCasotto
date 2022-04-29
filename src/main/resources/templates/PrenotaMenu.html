@@ -29,9 +29,9 @@ top: 200px; width:1000px; padding-left: 40%;">--->
 <div class="box input" style="position: relative;
      top: 80px; width:1000px; padding-left: 30%; font-size:24pt;">
 
-  <form  action="#" class="ui_formz" th:action="@{/going_home_tt}" th:object="${postxx}"  method="post">
-    <p th:text="'qr: '+${postxx.qr}"> qr</p>
-    <p th:text="'capienza: '+${postxx.capienza}"> capienza</p>
+  <form  action="#" class="ui_formz" th:action="@{/show_new_list}" th:object="${posto}"  method="post">
+    <p th:text="'qr: '+${posto.qr}"> qr</p>
+    <p th:text="'capienza: '+${posto.capienza}"> capienza</p>
 <div class="input-group input-group-lg">
   <span class="input-group-text" id="inputGroup-sizing-lg">Name</span>
 
@@ -52,29 +52,6 @@ top: 200px; width:1000px; padding-left: 40%;">--->
               </tr>
 
       </div>
-
-
-<!--
-<div class=" bos attr" style="position: relative; top: 30px;">
-
-<div class="form-check" >
-  <input class="form-check-input" type="checkbox" value="" >
-  <label class="form-check-label">
-    Ombrellone
-  </label>
-</div>
-<div class="form-check" >
-  <input class="form-check-input" type="checkbox" value="" >
-  <label class="form-check-label">
-    Sdraio
-  </label>
-</div>
-<div class="form-check" >
-  <input class="form-check-input" type="checkbox" value="" >
-  <label class="form-check-label">
-    Lettino
-  </label>
-</div>-->
 
 
 <div style="position:relative; top:50px;">
