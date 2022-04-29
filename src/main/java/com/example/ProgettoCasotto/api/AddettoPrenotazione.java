@@ -43,9 +43,11 @@ public class AddettoPrenotazione {
 
 
 
-    @GetMapping("DettagliPosto.html")
+    @GetMapping("/DettagliPosto.html")
     public String ListaPosti(Model model){
         model.addAttribute("stats",postoDatiMg1.getPosti());
+        model.addAttribute("next_path","InizioMenu.html");//btn_txt
+        model.addAttribute("btn_txt","Indietro");
         return "DettagliPosto";
     }
 /*
@@ -57,11 +59,20 @@ public class AddettoPrenotazione {
 
     // POST METHOD
     @RequestMapping(value = "/going_home_tt",method = RequestMethod.POST)
-    public String saveStudentlll(Model model, @ModelAttribute("postxx") Posto ps) {
+    public ModelAndView saveStudentlll( @ModelAttribute("postxx") Posto ps) {
         System.out.println(ps.toString());
         postoDatiMg1.update_posto(ps);
-        model.addAttribute("stats",postoDatiMg1.getPosti());
-        return "DettagliPosto";
+
+        ModelAndView mav = new ModelAndView("DettagliPosto.html");
+        mav.addObject("stats",postoDatiMg1.getPosti());
+        mav.addObject("next_path","HomeMenuuu.html");//btn_txt
+        mav.addObject("btn_txt","fine prenotazione");
+        return mav;
+    }
+
+    @GetMapping("HomeMenuuu.html")
+    public String goHomm(){
+        return "HomeMenu";
     }
 
     //    @RequestMapping(value = "/save", method = RequestMethod.POST)
