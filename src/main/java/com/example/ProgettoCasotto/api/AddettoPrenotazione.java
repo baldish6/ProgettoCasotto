@@ -48,18 +48,19 @@ public class AddettoPrenotazione {
         model.addAttribute("stats",postoDatiMg1.getPosti());
         return "DettagliPosto";
     }
-
+/*
     @GetMapping("going_home")
     public String VaiLitaPosti(Model model){
         model.addAttribute("stats",postoDatiMg1.getPosti());
         return "DettagliPosto";
-    }
+    }*/
 
     // POST METHOD
     @RequestMapping(value = "/going_home_tt",method = RequestMethod.POST)
-    public String saveStudentlll( @ModelAttribute("postxx") Posto ps) {
+    public String saveStudentlll(Model model, @ModelAttribute("postxx") Posto ps) {
         System.out.println(ps.toString());
-        //postoDatiMg1.postoOccupa(ps);
+        postoDatiMg1.update_posto(ps);
+        model.addAttribute("stats",postoDatiMg1.getPosti());
         return "DettagliPosto";
     }
 

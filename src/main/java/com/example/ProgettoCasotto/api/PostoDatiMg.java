@@ -42,9 +42,6 @@ public class PostoDatiMg {
             System.out.println(qr);
         }
         RiempiamoTabll();
-        //System.out.println(temp_posti);
-
-        //posti=temp_posti;
     }
 
     private void RiempiamoTabll(){
@@ -87,7 +84,7 @@ public class PostoDatiMg {
     public List<Posto> getPostCap(int i){
         return temp_posti.stream()
                 .filter(x-> x.getPersona() == null)
-                .filter(x->x.getCapienza()>i)
+                .filter(x->x.getCapienza()>i-1)
                 .collect(Collectors.toList());
     }
 
@@ -99,4 +96,11 @@ public class PostoDatiMg {
         temp_posti.add(p);
     }
 
+    public void update_posto(Posto ps) {
+        int idx = temp_posti.indexOf(
+                temp_posti.stream()
+                        .filter(x->x.getQr().equals(ps.getQr()))
+                        .findFirst().orElse(null));
+       temp_posti.set(idx,ps);
+    }
 }

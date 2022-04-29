@@ -28,9 +28,10 @@
 top: 200px; width:1000px; padding-left: 40%;">--->
 <div class="box input" style="position: relative;
      top: 80px; width:1000px; padding-left: 30%; font-size:24pt;">
-  <p> id</p>
-  <form  action="#" class="ui_formz" th:action="@{/going_home_tt}" th:object="${postxx}"  method="post">
 
+  <form  action="#" class="ui_formz" th:action="@{/going_home_tt}" th:object="${postxx}"  method="post">
+    <p th:text="'qr: '+${postxx.qr}"> qr</p>
+    <p th:text="'capienza: '+${postxx.capienza}"> capienza</p>
 <div class="input-group input-group-lg">
   <span class="input-group-text" id="inputGroup-sizing-lg">Name</span>
 
