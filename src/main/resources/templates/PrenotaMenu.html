@@ -35,48 +35,23 @@ top: 200px; width:1000px; padding-left: 40%;">--->
   <span class="input-group-text" id="inputGroup-sizing-lg">Name</span>
 
   <!---  onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" -->
-  <input type="string" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+  <input th:field="*{persona}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
 </div>
 
 
-    <input th:field="*{id}">
-    <input th:field="*{nome}">
-    <input th:field="*{random}">
-    <div>
-    <input type="checkbox" value="MEZZA_GIORNATA" th:field="*{tempo_prenotazione}" >
-      <label>MEZZA_GIORNATA</label>
-    </div>
-    <input th:field="*{giorni_prenotazione}">
-    <div>
-      <div>
+    <input type="hidden" th:value="AAAA" th:field="*{qr}">
+    <input type="hidden" th:value="7" th:field="*{capienza}">
 
-    <input type="checkbox" value="OMBRELLONE" th:field="*{attrezature}" >
-        <label>OMBRELLONE</label>
-        </div>
-      <div>
-    <input type="checkbox" value="SDRAIO" th:field="*{attrezature}" >
-        <label>SDRAIO</label>
-      </div>
-      <div>
-    <input type="checkbox" value="LETTINO" th:field="*{attrezature}" >
-        <label>LETTINO</label>
-      </div>
-    </div>
+      <div class="list attrezzature container" style="position:relative; top:30px; right:11px;">
+              <tr th:each="attr : ${getAttr}">
+                <div>
+                  <input class="form-check-input" type="checkbox" th:field="*{attrezature}" th:value="${attr}" id="flexCheckDefault">
+                  <label class="form-check-label" th:text="${attr}" for="flexCheckDefault"></label>
+                </div>
+              </tr>
 
-  <div class=" giornata select" style="position: relative; top: 30px; ">
-
-    <ul>
-      <li style="list-style-type: none;  position:relative; left:-32px;"  th:each="attr :${getAttr}">
-        <label class="form-check-label">
-          </label>
-      <div class="form-check" >
-        <input class="form-check-input"    th:value="${attr}" type="checkbox"  unchecked >
-        <label th:text="${attr}" class="form-check-label">
-          Ombrellone
-        </label>
       </div>
-      </li>
-    </ul>
+
 
 <!--
 <div class=" bos attr" style="position: relative; top: 30px;">
@@ -101,32 +76,32 @@ top: 200px; width:1000px; padding-left: 40%;">--->
 </div>-->
 
 
-
+<div style="position:relative; top:50px;">
 <div class="form-check">
-  <input class="form-check-input"   type="radio" checked  name="flexRadioDefault" onclick="HideSlider()" id="flexRadioDefault1">
+  <input class="form-check-input" value="MEZZA_GIORNATA"  th:field="*{tempo_prenotazione}" type="radio" checked  name="flexRadioDefault" onclick="HideSlider()" id="flexRadioDefault1">
   <label class="form-check-label" for="flexRadioDefault1">
     Mezza giornata
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input"    type="radio" name="flexRadioDefault" onclick="HideSlider()" id="flexRadioDefault2" checked>
+  <input class="form-check-input"  value="GIORNATA_INTERA"  th:field="*{tempo_prenotazione}"   type="radio" name="flexRadioDefault" onclick="HideSlider()" id="flexRadioDefault2" checked>
   <label class="form-check-label" for="flexRadioDefault2">
     Intera giornata
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input"  type="radio" name="flexRadioDefault" onclick="ShowSlider()" id="flexRadioDefault3">
+  <input class="form-check-input"  value="GIORNI_CONSECUTIVI"  th:field="*{tempo_prenotazione}" type="radio" name="flexRadioDefault" onclick="ShowSlider()" id="flexRadioDefault3">
   <label class="form-check-label" for="flexRadioDefault3">
     Multipli giorni
   </label>
-
+</div>
 
 
   <div class="box input">
     <div class="input-group input-group-lg"  id="giorni" style="position:relative ;left:-50px; visibility:hidden" >
       <span class="input-group-text" style="position:relative;top:20px;font-size:20px;" id="inputGroup-sizing-lg4">N° Giorni</span>
       <input   type="number" id="num_giorni" style="text-align: center; width:80px; top:20px; font-size: 60px;" onkeydown=" return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"
-             class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value="0">
+           th:field="*{giorni_prenotazione}" value="0" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
     </div>
   </div>
   <div>
@@ -136,7 +111,6 @@ width:480px; position:relative; top:40px;left:-40px;;text-align: center; font-si
 
   </div>
 
-</div>
   </form>
 </div>
 

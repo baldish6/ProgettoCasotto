@@ -1,16 +1,13 @@
 package com.example.ProgettoCasotto.api;
 
 import com.example.ProgettoCasotto.models.Posto;
-import com.example.ProgettoCasotto.models.Prova;
 import com.example.ProgettoCasotto.services.Attrezatura;
 import com.example.ProgettoCasotto.services.Orario;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -24,7 +21,6 @@ public class PostoDatiMg {
     //public PostoDatiMg(){}
 
     private List<Posto> temp_posti = new ArrayList<>();
-    private List<Prova> pva=new ArrayList<>();
     private Integer j=5;
 
     @PostConstruct
