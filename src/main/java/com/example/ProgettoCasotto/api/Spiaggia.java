@@ -64,7 +64,7 @@ public class Spiaggia {
                 posti_liberi.add(dp);
             }
         }
-    }
+    }//
 
     private void RiempiPostiOccupati() throws IOException{
         String path = "C:\\Users\\Baldish Singh\\Downloads\\Compressed\\ProgettoCasotto\\src\\main\\java\\com\\example\\ProgettoCasotto\\dao\\posti_occupati_db.csv";
