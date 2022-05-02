@@ -1,4 +1,4 @@
-package com.example.ProgettoCasotto.models;
+package com.example.ProgettoCasotto.util;
 
 import com.example.ProgettoCasotto.services.Attrezatura;
 import com.example.ProgettoCasotto.services.Orario;
@@ -6,8 +6,7 @@ import com.example.ProgettoCasotto.services.Orario;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class Posto {
+public class DettagliPosto {
     private  String qr;
     private  Integer capienza;
     private String persona;
@@ -15,60 +14,28 @@ public class Posto {
     private Orario tempo_prenotazione;
     private Integer giorni_prenotazione;
 
-
-    /****************************************************/
-
-    public Posto(String qr, Integer capienza,
-     String persona, List<Attrezatura> attrezature,Orario tempo_prenotazione,Integer giorni_prenotazione){
+    public DettagliPosto( String qr,Integer capienza,String persona,List<Attrezatura> attrezature,
+                          Orario tempo_prenotazione,Integer giorni_prenotazione
+    ){
         this.qr=qr;
         this.capienza=capienza;
         this.persona=persona;
         this.attrezature=attrezature;
         this.tempo_prenotazione=tempo_prenotazione;
         this.giorni_prenotazione=giorni_prenotazione;
-    }
-/*
-    public Posto(String persona, List<Attrezatura> attrezature,Orario tempo_prenotazione,Integer giorni_prenotazione){
-        this.qr="aaaaa"; this.capienza=1; this.persona=persona;
-        this.attrezature=attrezature;this.tempo_prenotazione=tempo_prenotazione;
-        this.giorni_prenotazione=giorni_prenotazione;
-    }
-*/
-    public Posto(String qr, Integer capienza){
-        this.qr=qr; this.capienza=capienza;
-    }
-
-    public Posto(){}
-
-
-
-
-    /****************************************************/
-
-
-    public Boolean isPrenotato(){
-        return persona.equals("Free");
-    }
-
-    public void occupaPosto(String persona,List<Attrezatura> attrezature,Orario tempo_prenotazione,
-                            Integer giorni_prenotazione){
-        this.persona=persona;
-        this.attrezature=attrezature;
-        this.tempo_prenotazione=tempo_prenotazione;
-        if (tempo_prenotazione.equals(Orario.GIORNI_CONSECUTIVI)){
-            this.giorni_prenotazione=giorni_prenotazione;
-        }
 
     }
 
-    public void LiberaPosto(){
-        this.persona="Free";
+    public DettagliPosto( String qr,Integer capienza
+    ){
+        this.qr=qr;
+        this.capienza=capienza;
+        this.persona=null;
         this.attrezature=null;
         this.tempo_prenotazione=null;
         this.giorni_prenotazione=null;
-    }
 
-    /****************************************************/
+    }
 
     public String getQr() {
         return qr;
@@ -86,6 +53,7 @@ public class Posto {
         this.capienza = capienza;
     }
 
+
     public String getPersona() {
         return persona;
     }
@@ -93,6 +61,7 @@ public class Posto {
     public void setPersona(String persona) {
         this.persona = persona;
     }
+
 
     public List<Attrezatura> getAttrezature() {
         return attrezature;
@@ -110,6 +79,7 @@ public class Posto {
         this.tempo_prenotazione = tempo_prenotazione;
     }
 
+
     public Integer getGiorni_prenotazione() {
         return giorni_prenotazione;
     }
@@ -120,7 +90,7 @@ public class Posto {
 
     @Override
     public String toString() {
-        return "Posto{" +
+        return "DettagliPosto{" +
                 "qr='" + qr + '\'' +
                 ", capienza=" + capienza +
                 ", persona='" + persona + '\'' +

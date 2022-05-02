@@ -1,6 +1,6 @@
 package com.example.ProgettoCasotto;
 
-import com.example.ProgettoCasotto.api.PostoDatiMg;
+import com.example.ProgettoCasotto.api.Spiaggia;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,7 +9,7 @@ public class ProgettoCasottoApplication {
 
 	// html checkbox
 	public static void main(String[] args) {
-		SpringApplication.run(PostoDatiMg.class, args);
+		SpringApplication.run(Spiaggia.class, args);
 	}
 
 }
