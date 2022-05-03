@@ -44,6 +44,11 @@ top: 200px; width:1000px; padding-left: 40%;">--->
   <input th:field="*{persona}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
 </div>
 
+
+
+    <input type="hidden" value="${libero.qr}" th:field="${posto.qr}"/>
+    <input type="hidden" value="${libero.capienza}" th:field="${posto.capienza}"/>
+
       <div class="list attrezzature container" style="position:relative; top:30px; right:11px;">
               <tr th:each="attr : ${getAttr}">
                 <div>

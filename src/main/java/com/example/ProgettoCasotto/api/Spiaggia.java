@@ -44,25 +44,26 @@ public class Spiaggia {
     //TODO add comanda
     public void partecipa_posto(OccupatoPosto ps) {
 
+        removeFromLibero(ps);
+        changeFromStats(ps,getDettagliOccupato(ps));
+        posti_occupati.add(ps);
+
+
+    }
+
+    private void removeFromLibero(OccupatoPosto ps){
         posti_liberi.remove(posti_liberi.stream()
                 .filter(x -> x.getQr().equals(ps.getQr()))
                 .findFirst().orElse(null));
 
+    }
 
-
-        System.out.println(getDettagliOccupato(ps));
-        stato_spiaggia.forEach(System.out::println);
-
-/*
+    private void changeFromStats(OccupatoPosto ps,DettagliPosto dp){
         stato_spiaggia.set(stato_spiaggia.indexOf(
-                stato_spiaggia.stream()
-                        .filter(x -> x.getQr().equals(ps.getQr()))
-                        .findFirst().orElse(null))
-                ,getDettagliOccupato(ps));*/
-
-        posti_occupati.add(ps);
-
-
+                        stato_spiaggia.stream()
+                                .filter(x -> x.getQr().equals(ps.getQr()))
+                                .findFirst().orElse(null))
+                ,dp);
     }
 
     private void RiempiPostiLiberi() throws IOException {
@@ -145,12 +146,12 @@ public class Spiaggia {
     }
 
     public void LiberaPosto(OccupatoPosto ps){
-        posti_liberi.add(new LiberoPosto(ps.getQr(), ps.getCapienza()));
-
-        posti_occupati.remove(posti_occupati.stream()
-                .filter(x -> x.getQr().equals(ps.getQr()))
-                .findFirst().orElse(null));
+        LiberoPosto libp = new LiberoPosto(ps.getQr(), ps.getCapienza());
+        posti_liberi.add(libp);
+        posti_occupati.remove(ps);
+        changeFromStats(ps,getDettagliLibero(libp));
 
     }
+
 
 }

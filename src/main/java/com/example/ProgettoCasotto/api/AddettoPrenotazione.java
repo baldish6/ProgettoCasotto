@@ -53,7 +53,6 @@ public class AddettoPrenotazione {
     // POST METHOD
     @RequestMapping(value = "/show_new_list",method = RequestMethod.POST)
     public String Partecipa(Model model, @ModelAttribute("posto") OccupatoPosto ps) {
-        System.out.println(ps.toString());
         spiaggia1.partecipa_posto(ps);
 
         model.addAttribute("posti", spiaggia1.getDettagli());

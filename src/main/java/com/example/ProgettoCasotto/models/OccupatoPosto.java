@@ -17,10 +17,6 @@ public class OccupatoPosto extends LiberoPosto {
     // manca libera posto
 
 
-    public OccupatoPosto(LiberoPosto l){
-        super(l.getQr(), l.getCapienza());
-    }
-
     public OccupatoPosto(String qr, Integer capienza,
                          String persona, List<Attrezatura> attrezature, Orario tempo_prenotazione, Integer giorni_prenotazione){
         super(qr,capienza);
@@ -28,20 +24,17 @@ public class OccupatoPosto extends LiberoPosto {
         this.attrezature=attrezature;
         this.tempo_prenotazione=tempo_prenotazione;
         if (tempo_prenotazione.equals(Orario.GIORNI_CONSECUTIVI)){
-        this.giorni_prenotazione=giorni_prenotazione;}
-    }
-
-    public OccupatoPosto(String persona, List<Attrezatura> attrezature, Orario tempo_prenotazione, Integer giorni_prenotazione){
-        this.persona=persona;
-        this.attrezature=attrezature;
-        this.tempo_prenotazione=tempo_prenotazione;
-        if (tempo_prenotazione.equals(Orario.GIORNI_CONSECUTIVI)){
             this.giorni_prenotazione=giorni_prenotazione;}
     }
 
-    public OccupatoPosto(String persona){
-        this.persona=persona;
+    //quando inizi form / manca qr e capienza se lo rimuovi;
+    public OccupatoPosto(LiberoPosto l){
+        super(l.getQr(), l.getCapienza());
     }
+
+    // viene errore se lo rimuovi;
+    public OccupatoPosto(){}
+
 
 
     public String getPersona() {
