@@ -25,7 +25,7 @@ public class AddettoPrenotazione {
     public String SelectPosto(Model model,@RequestParam(value = "numero_selezionato") String numero_selezionato){
         List<LiberoPosto> ls = spiaggia1.getPostCap(Integer.parseInt(numero_selezionato));
         if (ls.isEmpty()){
-            return "NonDisponibile";
+            return "PostoNonDisponibile";
         }
         model.addAttribute("posti",ls);
         return "ListaPostiSeleziona";
