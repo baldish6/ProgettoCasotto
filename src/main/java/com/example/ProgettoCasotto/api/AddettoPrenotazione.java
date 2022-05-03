@@ -25,6 +25,11 @@ public class AddettoPrenotazione {
     public String SelectPosto(Model model,@RequestParam(value = "numero_selezionato") String numero_selezionato){
         List<LiberoPosto> ls = spiaggia1.getPostCap(Integer.parseInt(numero_selezionato));
         if (ls.isEmpty()){
+            model.addAttribute("numero",numero_selezionato);
+            model.addAttribute("max_num",
+                    spiaggia1.getPostCap(1).stream()
+                            .map(LiberoPosto::getCapienza)
+                            .mapToInt(x->x).max().orElse(1));
             return "PostoNonDisponibile";
         }
         model.addAttribute("posti",ls);
