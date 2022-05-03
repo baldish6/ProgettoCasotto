@@ -1,4 +1,4 @@
-package com.example.ProgettoCasotto.services;
+package com.example.ProgettoCasotto.api;
 
 import com.example.ProgettoCasotto.models.OccupatoPosto;
 import com.example.ProgettoCasotto.models.LiberoPosto;
@@ -28,6 +28,7 @@ public class Spiaggia {
     public void RiempiTable() throws IOException {
         RiempiPostiLiberi();
         RiempiPostiOccupati();
+        RiempiStato();
     }
 
     public List<LiberoPosto> getPostCap(int i){
@@ -42,14 +43,27 @@ public class Spiaggia {
 
     //TODO add comanda
     public void partecipa_posto(OccupatoPosto ps) {
+
         posti_liberi.remove(posti_liberi.stream()
                 .filter(x -> x.getQr().equals(ps.getQr()))
                 .findFirst().orElse(null));
+
+
+
+        System.out.println(getDettagliOccupato(ps));
+        stato_spiaggia.forEach(System.out::println);
+
+/*
+        stato_spiaggia.set(stato_spiaggia.indexOf(
+                stato_spiaggia.stream()
+                        .filter(x -> x.getQr().equals(ps.getQr()))
+                        .findFirst().orElse(null))
+                ,getDettagliOccupato(ps));*/
+
         posti_occupati.add(ps);
 
 
     }
-
 
     private void RiempiPostiLiberi() throws IOException {
 
@@ -96,31 +110,39 @@ public class Spiaggia {
 
 
     public List<DettagliPosto> getDettagli(){
-
-     //   if (stato_spiaggia.isEmpty()){
-            Iterator<LiberoPosto> pli = posti_liberi.iterator();
-            LiberoPosto libp;
-            while (pli.hasNext()){
-                libp =  pli.next();
-                DettagliPosto dp = new DettagliPosto(libp.getQr(),libp.getCapienza());
-                stato_spiaggia.add(dp);
-            }
-
-            Iterator<OccupatoPosto> ocp = posti_occupati.iterator();
-            OccupatoPosto pps;
-            while (ocp.hasNext()){
-                pps = ocp.next();
-                DettagliPosto dp = new DettagliPosto(pps.getQr(), pps.getCapienza(), pps.getPersona(),
-                        pps.getAttrezature(),pps.getTempo_prenotazione(),pps.getGiorni_prenotazione());
-                stato_spiaggia.add(dp);
-            }
-
-            long seed = 25L;
-            Collections.shuffle(stato_spiaggia,new Random(seed));
-    //    }
         return stato_spiaggia;
     }
 
+    private void RiempiStato(){
+        Iterator<LiberoPosto> pli = posti_liberi.iterator();
+        LiberoPosto libp;
+        while (pli.hasNext()){
+            libp =  pli.next();
+            DettagliPosto dp = getDettagliLibero(libp);
+            stato_spiaggia.add(dp);
+        }
+
+        Iterator<OccupatoPosto> ocp = posti_occupati.iterator();
+        OccupatoPosto pps;
+        while (ocp.hasNext()){
+            pps = ocp.next();
+            DettagliPosto dp = getDettagliOccupato(pps);
+            stato_spiaggia.add(dp);
+        }
+
+        long seed = 25L;
+        Collections.shuffle(stato_spiaggia,new Random(seed));
+    }
+
+    private DettagliPosto getDettagliLibero( LiberoPosto libp){
+
+        return new DettagliPosto(libp.getQr(),libp.getCapienza());
+    }
+
+    private DettagliPosto getDettagliOccupato( OccupatoPosto pps){
+      return new DettagliPosto(pps.getQr(), pps.getCapienza(), pps.getPersona(),
+                pps.getAttrezature(),pps.getTempo_prenotazione(),pps.getGiorni_prenotazione());
+    }
 
     public void LiberaPosto(OccupatoPosto ps){
         posti_liberi.add(new LiberoPosto(ps.getQr(), ps.getCapienza()));

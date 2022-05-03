@@ -17,7 +17,9 @@ public class OccupatoPosto extends LiberoPosto {
     // manca libera posto
 
 
-    public OccupatoPosto(){}
+    public OccupatoPosto(LiberoPosto l){
+        super(l.getQr(), l.getCapienza());
+    }
 
     public OccupatoPosto(String qr, Integer capienza,
                          String persona, List<Attrezatura> attrezature, Orario tempo_prenotazione, Integer giorni_prenotazione){
@@ -27,6 +29,18 @@ public class OccupatoPosto extends LiberoPosto {
         this.tempo_prenotazione=tempo_prenotazione;
         if (tempo_prenotazione.equals(Orario.GIORNI_CONSECUTIVI)){
         this.giorni_prenotazione=giorni_prenotazione;}
+    }
+
+    public OccupatoPosto(String persona, List<Attrezatura> attrezature, Orario tempo_prenotazione, Integer giorni_prenotazione){
+        this.persona=persona;
+        this.attrezature=attrezature;
+        this.tempo_prenotazione=tempo_prenotazione;
+        if (tempo_prenotazione.equals(Orario.GIORNI_CONSECUTIVI)){
+            this.giorni_prenotazione=giorni_prenotazione;}
+    }
+
+    public OccupatoPosto(String persona){
+        this.persona=persona;
     }
 
 

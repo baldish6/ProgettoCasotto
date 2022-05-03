@@ -29,10 +29,13 @@ top: 200px; width:1000px; padding-left: 40%;">--->
 <div class="box input" style="position: relative;
      top: 20px; width:1000px; left:50px; padding-left: 30%; font-size:24pt;">
 
+<div th:object="${libero}">
+
+  <p th:text="'qr: '+${libero.qr}"> qr</p>
+  <p th:text="'capienza: '+${libero.capienza}" > capienza</p>
+</div>
   <form  action="#" class="ui_formz" th:action="@{/show_new_list}" th:object="${posto}"  method="post">
 
-    <p th:text="'qr: '+${qur}"> qr</p>
-    <p th:text="'capienza: '+${cap}" > capienza</p>
 
 <div class="input-group input-group-lg">
   <span class="input-group-text" id="inputGroup-sizing-lg">Name</span>
@@ -40,10 +43,6 @@ top: 200px; width:1000px; padding-left: 40%;">--->
   <!---onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"-->
   <input th:field="*{persona}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
 </div>
-
-
-    <label th:text="${qur}" th:field="${posto.qr}"></label>
-    <label th:text="${cap}" th:field="${posto.capienza}"></label>
 
       <div class="list attrezzature container" style="position:relative; top:30px; right:11px;">
               <tr th:each="attr : ${getAttr}">

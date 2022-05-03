@@ -3,7 +3,6 @@ package com.example.ProgettoCasotto.api;
 import com.example.ProgettoCasotto.models.LiberoPosto;
 import com.example.ProgettoCasotto.models.OccupatoPosto;
 import com.example.ProgettoCasotto.services.Attrezatura;
-import com.example.ProgettoCasotto.services.Spiaggia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,9 +35,8 @@ public class AddettoPrenotazione {
     @RequestMapping(value = "/id_posto",method = RequestMethod.GET)
     public String StartForm(Model model,@RequestParam(value = "qr_id") String qr_id){
         LiberoPosto std = spiaggia1.getPostobyID(qr_id);
-        model.addAttribute("qur",std.getQr());
-        model.addAttribute("cap",std.getCapienza());
-        model.addAttribute("posto",new OccupatoPosto());
+        model.addAttribute("libero",std);
+        model.addAttribute("posto",new OccupatoPosto(std));
         model.addAttribute("getAttr", Attrezatura.values());
         return "PrenotaMenu";
     }

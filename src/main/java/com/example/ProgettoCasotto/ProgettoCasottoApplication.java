@@ -1,6 +1,6 @@
 package com.example.ProgettoCasotto;
 
-import com.example.ProgettoCasotto.services.Spiaggia;
+import com.example.ProgettoCasotto.api.Spiaggia;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
