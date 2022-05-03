@@ -3,10 +3,13 @@ package com.example.ProgettoCasotto.api;
 import com.example.ProgettoCasotto.models.LiberoPosto;
 import com.example.ProgettoCasotto.models.OccupatoPosto;
 import com.example.ProgettoCasotto.services.Attrezatura;
+import com.example.ProgettoCasotto.services.Spiaggia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class AddettoPrenotazione {
@@ -21,7 +24,11 @@ public class AddettoPrenotazione {
 
     @RequestMapping(value = "/posti_disponibili",method = RequestMethod.GET)
     public String SelectPosto(Model model,@RequestParam(value = "numero_selezionato") String numero_selezionato){
-        model.addAttribute("posti", spiaggia1.getPostCap(Integer.parseInt(numero_selezionato)));
+        List<LiberoPosto> ls = spiaggia1.getPostCap(Integer.parseInt(numero_selezionato));
+        if (ls.isEmpty()){
+            return "NonDisponibile";
+        }
+        model.addAttribute("posti",ls);
         return "ListaPostiSeleziona";
     }
 

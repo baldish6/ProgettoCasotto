@@ -1,4 +1,4 @@
-package com.example.ProgettoCasotto.api;
+package com.example.ProgettoCasotto.services;
 
 import com.example.ProgettoCasotto.models.OccupatoPosto;
 import com.example.ProgettoCasotto.models.LiberoPosto;
@@ -22,6 +22,7 @@ public class Spiaggia {
 
     private ArrayList<LiberoPosto> posti_liberi=new ArrayList<>();
     private ArrayList<OccupatoPosto> posti_occupati=new ArrayList<>();
+    private List<DettagliPosto> stato_spiaggia = new ArrayList<>();
 
     @PostConstruct
     public void RiempiTable() throws IOException {
@@ -45,6 +46,8 @@ public class Spiaggia {
                 .filter(x -> x.getQr().equals(ps.getQr()))
                 .findFirst().orElse(null));
         posti_occupati.add(ps);
+
+
     }
 
 
@@ -93,28 +96,39 @@ public class Spiaggia {
 
 
     public List<DettagliPosto> getDettagli(){
-        List<DettagliPosto> stato_spiaggia = new ArrayList<>();
 
-        Iterator<LiberoPosto> pli = posti_liberi.iterator();
-        LiberoPosto libp;
-        while (pli.hasNext()){
-            libp =  pli.next();
-            DettagliPosto dp = new DettagliPosto(libp.getQr(),libp.getCapienza());
-            stato_spiaggia.add(dp);
-        }
+     //   if (stato_spiaggia.isEmpty()){
+            Iterator<LiberoPosto> pli = posti_liberi.iterator();
+            LiberoPosto libp;
+            while (pli.hasNext()){
+                libp =  pli.next();
+                DettagliPosto dp = new DettagliPosto(libp.getQr(),libp.getCapienza());
+                stato_spiaggia.add(dp);
+            }
 
-        Iterator<OccupatoPosto> ocp = posti_occupati.iterator();
-        OccupatoPosto pps;
-        while (ocp.hasNext()){
-            pps = ocp.next();
-            DettagliPosto dp = new DettagliPosto(pps.getQr(), pps.getCapienza(), pps.getPersona(),
-                    pps.getAttrezature(),pps.getTempo_prenotazione(),pps.getGiorni_prenotazione());
-            stato_spiaggia.add(dp);
-        }
+            Iterator<OccupatoPosto> ocp = posti_occupati.iterator();
+            OccupatoPosto pps;
+            while (ocp.hasNext()){
+                pps = ocp.next();
+                DettagliPosto dp = new DettagliPosto(pps.getQr(), pps.getCapienza(), pps.getPersona(),
+                        pps.getAttrezature(),pps.getTempo_prenotazione(),pps.getGiorni_prenotazione());
+                stato_spiaggia.add(dp);
+            }
 
-        long seed = 25L;
-        Collections.shuffle(stato_spiaggia,new Random(seed));
+            long seed = 25L;
+            Collections.shuffle(stato_spiaggia,new Random(seed));
+    //    }
         return stato_spiaggia;
+    }
+
+
+    public void LiberaPosto(OccupatoPosto ps){
+        posti_liberi.add(new LiberoPosto(ps.getQr(), ps.getCapienza()));
+
+        posti_occupati.remove(posti_occupati.stream()
+                .filter(x -> x.getQr().equals(ps.getQr()))
+                .findFirst().orElse(null));
+
     }
 
 }

@@ -12,6 +12,7 @@ public class OccupatoPosto extends LiberoPosto {
     private List<Attrezatura> attrezature=new ArrayList<>();
     private Orario tempo_prenotazione;
     private Integer giorni_prenotazione;
+
     // comanda bar , comanda attivita manca
     // manca libera posto
 
