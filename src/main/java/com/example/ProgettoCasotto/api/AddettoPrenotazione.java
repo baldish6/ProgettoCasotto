@@ -32,6 +32,7 @@ public class AddettoPrenotazione {
     }
 
     // TODO trasforma libero posto in posto occupato
+    //
     @RequestMapping(value = "/id_posto",method = RequestMethod.GET)
     public String StartForm(Model model,@RequestParam(value = "qr_id") String qr_id){
         LiberoPosto std = spiaggia1.getPostobyID(qr_id);
